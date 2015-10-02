@@ -22,6 +22,13 @@ public class GetEntityTest {
 		String k3;
 		@Column(type = ColumnType.Normal)
 		String value;
+		
+		public ExampleEntity() {}
+		
+		public ExampleEntity(String key, String val) {
+			String[] keys = key.split(":");
+			k1 = keys[0]; k2 = keys[1]; k3 = keys[2]; value = val;
+		}
 	}
 
     public EntityDao<ExampleEntity> dao = EntityDao.of(ExampleEntity.class, new Context());
@@ -48,19 +55,19 @@ public class GetEntityTest {
 
     @Test
     public void testInsert() {
-        System.out.println(dao.insert(new ExampleEntity()).getQuery());
+        System.out.println(dao.insert(new ExampleEntity("1:2:3", "value")).getQuery());
         System.out.println(dao.insert(ImmutableMap.of("key", "k1", "val", "v1")).getQuery());
     }
 
     @Test
     public void testUpdate() {
-        System.out.println(dao.update(new ExampleEntity()).getQuery());
+        System.out.println(dao.update(new ExampleEntity("1:2:3", "value")).getQuery());
         System.out.println(dao.update("val1", "val", "val2", "val", eq("key", "k1")).getQuery());
     }
 
     @Test
     public void testDelete() {
-        System.out.println(dao.delete(new ExampleEntity()).getQuery());
+        System.out.println(dao.delete(new ExampleEntity("1:2:3", "value")).getQuery());
         System.out.println(dao.delete(eq("key", "k1")).getQuery());
         System.out.println(dao.delete(in("key", "k1", "k2", "k3")).getQuery());
     }
