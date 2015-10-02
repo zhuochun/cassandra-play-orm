@@ -3,9 +3,9 @@ package com.bicrement.cassandra.play.query;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.bicrement.cassandra.play.BatchableQuery;
 import com.bicrement.cassandra.play.Context;
 import com.bicrement.cassandra.play.Entity;
-import com.bicrement.cassandra.play.query.type.BatchableQuery;
 import com.datastax.driver.core.BoundStatement;
 import com.datastax.driver.core.Row;
 import com.google.common.collect.ImmutableMap;

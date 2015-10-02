@@ -6,4 +6,6 @@ public interface Namelizer {
 
     public String getColumnName(String fieldName);
 
+    public String getFieldName(String columnName);
+
 }

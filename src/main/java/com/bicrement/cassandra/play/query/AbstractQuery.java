@@ -2,9 +2,9 @@ package com.bicrement.cassandra.play.query;
 
 import java.util.Arrays;
 
+import com.bicrement.cassandra.play.BaseQuery;
 import com.bicrement.cassandra.play.Context;
 import com.bicrement.cassandra.play.Entity;
-import com.bicrement.cassandra.play.query.type.BaseQuery;
 import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.ResultSetFuture;

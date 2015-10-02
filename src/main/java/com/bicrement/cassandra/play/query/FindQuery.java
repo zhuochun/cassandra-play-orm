@@ -51,7 +51,7 @@ public class FindQuery<T> extends AbstractQuery {
     @Override
     public T execute() {
         ResultSet rs = exec();
-        return (T)context.getSerializer().toJavaObject(rs, entity);
+        return (T)context.getSerializer().toJavaObject(rs.one(), entity);
     }
 
 }

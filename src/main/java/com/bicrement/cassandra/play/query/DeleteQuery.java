@@ -1,9 +1,9 @@
 package com.bicrement.cassandra.play.query;
 
+import com.bicrement.cassandra.play.BatchableQuery;
 import com.bicrement.cassandra.play.Context;
 import com.bicrement.cassandra.play.Entity;
 import com.bicrement.cassandra.play.clause.Clause;
-import com.bicrement.cassandra.play.query.type.BatchableQuery;
 import com.datastax.driver.core.BoundStatement;
 import com.google.common.base.Joiner;
 import com.google.common.collect.ImmutableList;

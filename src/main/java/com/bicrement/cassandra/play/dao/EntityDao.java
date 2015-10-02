@@ -30,12 +30,14 @@ import com.google.common.collect.ImmutableMap;
  */
 public class EntityDao<T> extends AbstractDao<T> {
 
-    public static <T1> EntityDao<T1> of(Class<T1> dtoClass) {
-        return new EntityDao<>(Entity.of(dtoClass), new Context());
+    public static <T1> EntityDao<T1> of(Class<T1> dtoClass, Context context) {
+    	context = (context == null ? new Context() : context);
+        return new EntityDao<>(Entity.of(dtoClass), context);
     }
 
-    public static <T1> EntityDao<T1> of(Entity<T1> entity) {
-        return new EntityDao<>(entity, new Context());
+    public static <T1> EntityDao<T1> of(Entity<T1> entity, Context context) {
+    	context = (context == null ? new Context() : context);
+        return new EntityDao<>(entity, context);
     }
 
     EntityDao(Entity<T> entity, Context context) {
@@ -84,15 +86,15 @@ public class EntityDao<T> extends AbstractDao<T> {
      * Select APIs
      */
 
-    public SelectQuery<T> where() {
+    public SelectQuery<T> select() {
         return new SelectQuery<T>(entity, context, ImmutableList.of());
     }
 
-    public SelectQuery<T> where(EqualityClause clause, Clause... clauses) {
+    public SelectQuery<T> selectWhere(EqualityClause clause, Clause... clauses) {
         return new SelectQuery<T>(entity, context, clauseList(clause, clauses));
     }
 
-    public SelectQuery<T> where(List<Clause> clauses) {
+    public SelectQuery<T> selectWhere(List<Clause> clauses) {
         return new SelectQuery<T>(entity, context, ImmutableList.copyOf(clauses));
     }
 

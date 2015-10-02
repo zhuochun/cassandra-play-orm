@@ -1,4 +1,4 @@
-package com.bicrement.cassandra.play.query.type;
+package com.bicrement.cassandra.play;
 
 import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.Statement;

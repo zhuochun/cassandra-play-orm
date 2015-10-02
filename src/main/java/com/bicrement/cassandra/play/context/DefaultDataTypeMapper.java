@@ -1,12 +1,17 @@
 package com.bicrement.cassandra.play.context;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.net.InetAddress;
 import java.nio.ByteBuffer;
 import java.util.Date;
-import java.util.Map;
 import java.util.UUID;
+
+import com.google.common.collect.BiMap;
+import com.google.common.collect.ImmutableBiMap;
+import com.google.common.collect.ImmutableBiMap.Builder;
 
 public class DefaultDataTypeMapper implements DataTypeMapper {
 
@@ -29,21 +34,36 @@ public class DefaultDataTypeMapper implements DataTypeMapper {
         DataType(Class<?> javaClass) {
             this.javaClass = javaClass;
         }
+
+        public Class<?> javaClass() {
+            return javaClass;
+        }
     }
 
-    private static final Map<String, Class<?>> JAVA_CLASS_MAP = null; // TODO
-    private static final Map<Class<?>, String> DATA_TYPE_MAP = null; // TODO
+    private final BiMap<String, Class<?>> DATA_TYPE_MAP;
 
-    @Override
-    public Class<?> asJavaClass(String type) {
-        return String.class;
-        // return JAVA_CLASS_MAP.getOrDefault(type, null);
+    public DefaultDataTypeMapper() {
+        Builder<String, Class<?>> builder = new ImmutableBiMap.Builder<>();
+
+        for (DataType dt : DataType.values()) {
+            builder.put(dt.name(), dt.javaClass());
+        }
+
+        DATA_TYPE_MAP = builder.build();
     }
 
     @Override
-    public String asDataType(Class<?> javaClass) {
-        return "text";
-        // return DATA_TYPE_MAP.getOrDefault(javaClass, "blob");
+	public Class<?> asJavaClass(String type) {
+        Class<?> javaClass = DATA_TYPE_MAP.get(type);
+        checkNotNull(javaClass, String.format("Type %s cannot map to a valid Java class", type));
+        return javaClass;
+    }
+
+    @Override
+	public String asDataType(Class<?> javaClass) {
+        String dataType = DATA_TYPE_MAP.inverse().get(javaClass);
+        checkNotNull(dataType, String.format("Java class %s cannot map to a valid Database type", javaClass));
+        return dataType;
     }
 
 }

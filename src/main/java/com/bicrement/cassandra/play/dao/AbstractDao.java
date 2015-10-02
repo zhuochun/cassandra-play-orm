@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+import com.bicrement.cassandra.play.BatchableQuery;
 import com.bicrement.cassandra.play.Context;
 import com.bicrement.cassandra.play.Entity;
 import com.bicrement.cassandra.play.Entity.FieldEntry;
@@ -11,7 +12,6 @@ import com.bicrement.cassandra.play.clause.Clause;
 import com.bicrement.cassandra.play.clause.Clause.EqualityClause;
 import com.bicrement.cassandra.play.clause.Where;
 import com.bicrement.cassandra.play.query.BatchQuery;
-import com.bicrement.cassandra.play.query.type.BatchableQuery;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 

@@ -1,4 +1,4 @@
-package com.bicrement.cassandra.play.query.type;
+package com.bicrement.cassandra.play;
 
 public interface BatchableQuery extends BaseQuery {
 

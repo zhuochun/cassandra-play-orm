@@ -65,7 +65,7 @@ public class EntityImpl<T> implements Entity<T> {
     }
 
     @Override
-    public Object getName() {
+    public String getName() {
         return dtoName;
     }
 

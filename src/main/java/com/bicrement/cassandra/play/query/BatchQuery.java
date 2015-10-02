@@ -1,8 +1,8 @@
 package com.bicrement.cassandra.play.query;
 
+import com.bicrement.cassandra.play.BatchableQuery;
 import com.bicrement.cassandra.play.Context;
 import com.bicrement.cassandra.play.Entity;
-import com.bicrement.cassandra.play.query.type.BatchableQuery;
 import com.datastax.driver.core.BatchStatement;
 import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.Row;
